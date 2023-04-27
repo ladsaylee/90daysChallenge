@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Recusrion and Backtracking/ConsoleApp1/ConsoleApp1/obj
+/Recusrion and Backtracking/ConsoleApp1/ConsoleApp1/bin/Debug/net5.0
+/.vs
+/Recusrion and Backtracking/ConsoleApp1/.vs/ConsoleApp1
