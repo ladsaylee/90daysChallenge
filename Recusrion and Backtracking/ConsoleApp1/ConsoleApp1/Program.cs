@@ -762,29 +762,257 @@ namespace ConsoleApp1
             }
         }
 
+        //find GCD and HCF - The largest common no which divides both the number
+        /*Method 1
+         * go from 1 to min(n1,n2) and see which max number divides both n1 and n2
+         */
+        /*Method 2
+         * go from min(n1,n2) to 1 and see which max number divides both n1 and n2
+         */
+        //this will have time complexity O(n1,n2)
+        private static int GCD_HCF(int n1, int n2)
+        {
+            int gcd = 1;
+            for (int i=Math.Min(n1,n2); i>=1; i--)
+            {
+                if(n1%i == 0 && n2%i == 0)
+                {
+                    gcd = i;
+                    break;
+                }
+                    
+            }
+            return gcd;
+        }
+
+        //
+        private static int GCD_HCF_Euclidean(int n1, int n2)
+        {
+            while(n1!=0 && n2!=0)
+            {
+                if (n1 > n2)
+                    n1 = n1 - n2;
+                else
+                    n2 = n2 - n1;
+            }
+            if (n1 == 0)
+                return n2;
+            else
+                return n1;
+        }
+
+        private static int GCD_HCF_Euclidean2(int n1, int n2)
+        {
+            while (n1 != 0 && n2 != 0)
+            {
+                if (n1 > n2)
+                    n1 = n1 % n2;
+                else
+                    n2 = n2 % n1;
+            }
+            if (n1 == 0)
+                return n2;
+            else
+                return n1;
+        }
+
+        //find prime number
+        private static bool PrimeNo(int v)
+        {
+            List<int> a = new List<int>();
+            for (int i = 1; i <= Math.Sqrt(v); i++)
+            {
+                if (v % i == 0)
+                {
+                    a.Add(v / i);
+                    if (v / i != i)
+                        a.Add(i);
+                }
+
+            }
+            if (a.Count == 2)
+                return true;
+            else
+                return false;
+        }
+
+
+
+        // divide n check for reminder if 0 , from 1-N.. Complixity = O(n) so we go with other info 
+        private static void Divisors(int v)
+        {
+            for(int i =1;  i<= Math.Sqrt(v); i++)
+            {
+                if(v%i==0)
+                {
+                    Console.WriteLine(v / i);
+                    if(v/i!=i)
+                        Console.WriteLine(i);
+                }
+                
+            }
+
+        }
+
+        private static bool ArmstrongNumber(int v)
+        {
+            int x = v;
+            int y = 0;
+            double num = 0;
+            while(x!=0)
+            {
+                y = x % 10;
+                x = x / 10;
+                num = num + Math.Pow(y, 3);
+            }
+            if (num == v)
+                return true;
+            else
+                return false;
+
+        }
+
+        private static bool CheckPalindrom(int v)
+        {
+
+            int x = v;
+            int y = v;
+            int num = 0;
+            while (x != 0)
+            {
+                y = x % 10;
+                x = x / 10;
+                num = num * 10 + y;
+                Console.WriteLine(y);
+            }
+            if (num == v)
+                return true;
+            else
+                return false;
+        }
+
+        private static int Reversenumber(int v)
+        {
+            int x = v;
+            int y = v;
+            int num = 0;
+            while (x != 0)
+            {
+                y = x % 10;
+                x = x / 10;
+                num = num*10 + y;
+                Console.WriteLine(y);
+            }
+            return num;
+        }
+
+        //print number in reverse order - time complexity = log10(n)
+        private static int ReverseOrder(int v)
+        {
+            int x = v;
+            int y = v;
+            int count = 0;
+            while(x!=0)
+            {
+                y = x % 10;
+                x = x / 10;
+                count++;
+                Console.WriteLine(y);
+            }
+            return count;
+        }
+
+        //print name n times using recursion
+
+        static void printname(string name, int times)
+        {
+            if (times == 0)
+                return;
+            Console.WriteLine(name);
+            printname(name, times - 1);
+        }
+
+        static void print1_N(int times)
+        {
+            //int i = 1;
+            if (times == 0)
+                return;
+            print1_N(times - 1);
+            Console.WriteLine(times);
+            
+        }
+
+        static void printN_1(int times)
+        {
+            //int i = 1;
+            if (times == 0)
+                return;
+            Console.WriteLine(times);
+            printN_1(times - 1);
+            
+
+        }
+
+        static int Sum_N(int N)
+        {
+            int sum = 0;
+
+            if (N == 1)
+                return 1;
+            return (N + Sum_N(N - 1));
+        }
+
+        static int Fact_N(int N)
+        {
+            //int sum = 0;
+
+            if (N == 1)
+                return 1;
+            return (N * Fact_N(N - 1));
+        }
+
+        static void reverse_array(int []arr, int s, int e)
+        {
+            if (s > e)
+                return;
+            swap(arr, s, e);
+            reverse_array(arr, s + 1, e - 1);
+        }
+
+        static int string_pal(string name, int s)
+        {
+            if (s > name.Length - s - 1)
+                return 1;
+            if (name[s] != name[name.Length - s - 1])
+                return 0;
+
+
+            return string_pal(name, s + 1);
+        }
+
+        static int FibNumber(int N)
+        {
+            if (N <=1)
+                return N;
+            return FibNumber(N - 1) + FibNumber(N - 2);
+        }
+
+        //hashing
+
+
+
+
         static void Main(string[] args)
         {
-            patternprint19(6);
+
+            int x = FibNumber(3);
+            Console.WriteLine(x);
+
         }
+
+
     }
+
+
+
 }
-/*
-**********
-
-****  ****
-
-***    ***
-
-**      **
-
-*        *
-
-*        *
-
-**      **
-
-***    ***
-
-****  ****
-
-***********/
